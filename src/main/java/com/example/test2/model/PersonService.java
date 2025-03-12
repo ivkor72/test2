@@ -2,9 +2,11 @@ package com.example.test2.model;
 
 
 import jakarta.persistence.*;
-import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Entity
 @Table(name = "person_services")
 public class PersonService {
@@ -18,6 +20,11 @@ public class PersonService {
 
     @Column(name = "service_cost")
     private double serviceCost;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "service_id")
+    private List<RequestForService> requestsForServices = new ArrayList<>();
+
 
     public PersonService() {
 

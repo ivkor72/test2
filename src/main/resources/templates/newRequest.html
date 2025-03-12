@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:c="">
+<html lang="ru" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+<h2>Добро пожаловать!</h2>
+<br>
+<br>
+<h2>Введите данные для заказа услуги</h2>
+<br>
+<label for="name">Имя:  </label>
+<input name="name" type="text" id="name" th:value="${person.name}">
+<br>
+<br>
+<label for="surname">Фамилия:  </label>
+<input name="surname" type="text" id="surname" th:value="${person.surname}">
+<br>
+<br>
+<label for="age">Возраст:  </label>
+<input name="age" type="text" id="age" th:value="${person.age}">
+<br>
+<br>
+<label for="services">Выберите услугу:  </label>
+
+<select name="services" id="services" size="1">
+    <option disabled selected value></option>
+    <option value="r1">Услуга номер 1</option>
+    <option value="r2">Услуга номер 2</option>
+    <option value="r3">Услуга номер 3</option>
+</select>
+<br>
+<br>
+<div id="hiddenField" class="hidden">
+<label  for="serviceCost">Стоимость услуги:  </label>
+<input  name="serviceCost" type="text" id="serviceCost" th:value="${personService.serviceCost}">
+    <br>
+    <br>
+    <button id="toPay">Оплатить</button>
+</div>
+
+<!--<script>-->
+<!--    document.getElementById('services').addEventListener('change', function() {-->
+<!--        var selectedValue = this.value;-->
+<!--        var hiddenField = document.getElementById('hiddenField');-->
+
+<!--        if (selectedValue === '') {-->
+<!--            hiddenField.style.display = 'none';-->
+<!--        } else {-->
+<!--            hiddenField.style.display = 'block';-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
+
+
+</body>
+</html>

@@ -1,11 +1,11 @@
 package com.example.test2.model;
 
 import jakarta.persistence.*;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.Date;
 
-@Transactional
+
 @Entity
 @Table(name = "payments")
 public class Payment {

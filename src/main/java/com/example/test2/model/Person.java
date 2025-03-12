@@ -1,9 +1,13 @@
 package com.example.test2.model;
 
 import jakarta.persistence.*;
-import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+
 @Entity
 @Table(name = "persons")
 public class Person {
@@ -20,6 +24,10 @@ public class Person {
 
     @Column(name = "age")
     private int age;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_id")
+    private List<RequestForService> requestsForServices = new ArrayList<>();
 
     public Person() {
 
