@@ -4,6 +4,9 @@ import com.example.test2.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class PersonService {
 
@@ -14,4 +17,9 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
+//    private List<PersonService> getAllPersonServices() {
+//        List<P> personServices = new ArrayList<>();
+//        personServices = personRepository.findAll();
+//        return personServices;
+//    }
 }

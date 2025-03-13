@@ -1,6 +1,6 @@
 package com.example.test2.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "requests_for_servises")
-public class RequestForService {
+public class Zapros {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,14 +29,14 @@ public class RequestForService {
     @JoinColumn(name = "request_id")
     List<Payment> payments = new ArrayList<>();
 
-    public RequestForService(long id, long personId, long serviceId, Date requestDate) {
+    public Zapros(long id, long personId, long serviceId, Date requestDate) {
         this.id = id;
         this.personId = personId;
         this.serviceId = serviceId;
         this.requestDate = requestDate;
     }
 
-    public RequestForService() {
+    public Zapros() {
 
     }
 

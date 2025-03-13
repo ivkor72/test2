@@ -1,7 +1,7 @@
 package com.example.test2.model;
 
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "person_services")
-public class PersonService {
+public class Usluga {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,14 +23,14 @@ public class PersonService {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "service_id")
-    private List<RequestForService> requestsForServices = new ArrayList<>();
+    private List<Zapros> requestsForServices = new ArrayList<>();
 
 
-    public PersonService() {
+    public Usluga() {
 
     }
 
-    public PersonService(long id, String serviceName, double serviceCost) {
+    public Usluga(long id, String serviceName, double serviceCost) {
         this.id = id;
         this.serviceName = serviceName;
         this.serviceCost = serviceCost;

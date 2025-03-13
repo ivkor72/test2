@@ -1,6 +1,6 @@
 package com.example.test2.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 
 import java.util.Date;

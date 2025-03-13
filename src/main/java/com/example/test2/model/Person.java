@@ -1,11 +1,9 @@
 package com.example.test2.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -27,7 +25,7 @@ public class Person {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id")
-    private List<RequestForService> requestsForServices = new ArrayList<>();
+    private List<Zapros> requestsForServices = new ArrayList<>();
 
     public Person() {
 
