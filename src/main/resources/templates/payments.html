@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:c="">
+<html lang="ru" >
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Оплата услуги</title>
+</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+<h2>Оплата услуги</h2>
+<input type="text" id="personId" th:value="${person.id}">
+<input type="text" id="zaprosId" th:value="${zapros.id}">
+<br>
+<br>
+<label for="serviceCost">Стоимость услуги - </label>
+<input type="text" id="serviceCost" th:value="${usluga.serviceCost}" disabled>
+<br>
+<br>
+<!--<div>-->
+<label for="prePayment">Сумма предоплаты:  </label>
+<input name="prePayment" type="text" id="prePayment">
+<!--</div>-->
+<br>
+<br>
+<button  id="topay">оплатить</button>
+<br>
+<br>
+<label for="calculation">Осталось оплатить:  </label>
+<input name="calculation" type="text" id="calculation" disabled>
+
+
+
+<script>
+  // document.getElementById('serviceCost').value = 200;
+  var serviceCostValue = document.getElementById('serviceCost').value;
+  var prePaymentValue = document.getElementById('prePayment').value;
+  var calcValue = serviceCostValue - prePaymentValue;
+  document.getElementById('calculation').value = calcValue;
+  document.getElementById('topay').addEventListener('click', function () {
+    var serviceCostValue = document.getElementById('serviceCost').value;
+    var prePaymentValue = document.getElementById('prePayment').value;
+    var calcValue = serviceCostValue - prePaymentValue;
+    console.log(calcValue);
+    document.getElementById('calculation').value = calcValue;
+  });
+</script>
+
+</body>
+</html>

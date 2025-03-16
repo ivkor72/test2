@@ -1,8 +1,12 @@
 package com.example.test2.model;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,16 +14,21 @@ import java.util.List;
 @Entity
 @Table(name = "person_services")
 public class Usluga {
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
+    @Getter
+    @Setter
     @Column(name = "servise_name")
     private String serviceName;
 
-    @Column(name = "service_cost")
-    private double serviceCost;
+    @Getter
+    @Setter
+    @Column(name = "service_cost", columnDefinition = "DECIMAL(10,2)")
+    private BigDecimal serviceCost;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "service_id")
@@ -30,29 +39,10 @@ public class Usluga {
 
     }
 
-    public Usluga(long id, String serviceName, double serviceCost) {
+    public Usluga(long id, String serviceName, BigDecimal serviceCost) {
         this.id = id;
         this.serviceName = serviceName;
         this.serviceCost = serviceCost;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public String getServiceName() {
-        return serviceName;
-    }
-
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
-
-    public double getServiceCost() {
-        return serviceCost;
-    }
-
-    public void setServiceCost(double serviceCost) {
-        this.serviceCost = serviceCost;
-    }
 }

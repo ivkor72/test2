@@ -1,8 +1,11 @@
 package com.example.test2.model;
 
+import lombok.Setter;
+
 import javax.persistence.*;
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -15,16 +18,19 @@ public class Payment {
     @Column(name = "id")
     private long id;
 
+    @Setter
     @Column(name = "request_id")
     private long requestId;
 
-    @Column(name = "pay_amount")
-    private double payAmount;
+    @Setter
+    @Column(name = "pay_amount", columnDefinition = "DECIMAL(10,2)")
+    private BigDecimal payAmount;
 
+    @Setter
     @Column(name = "payment_date")
     private Date paymentDate;
 
-    public Payment(long id, long requestId, double payAmount, Date paymentDate) {
+    public Payment(long id, long requestId, BigDecimal payAmount, Date paymentDate) {
         this.id = id;
         this.requestId = requestId;
         this.payAmount = payAmount;
@@ -43,23 +49,12 @@ public class Payment {
         return requestId;
     }
 
-    public void setRequestId(long requestId) {
-        this.requestId = requestId;
-    }
-
-    public double getPayAmount() {
+    public BigDecimal getPayAmount() {
         return payAmount;
-    }
-
-    public void setPayAmount(double payAmount) {
-        this.payAmount = payAmount;
     }
 
     public Date getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(Date paymentDate) {
-        this.paymentDate = paymentDate;
-    }
 }

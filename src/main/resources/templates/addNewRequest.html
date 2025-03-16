@@ -23,6 +23,7 @@
 <br>
 <h2>Введите данные для заказа услуги</h2>
 <br>
+<input name="alluslugas" type="text" id="alluslugas" th:value="${uslugas}">
 <label for="name">Имя:  </label>
 <input name="name" type="text" id="name" th:value="${person.name}">
 <br>
@@ -39,32 +40,39 @@
 
 <select name="services" id="services" size="1">
     <option disabled selected value></option>
-    <option value="r1">Услуга номер 1</option>
-    <option value="r2">Услуга номер 2</option>
-    <option value="r3">Услуга номер 3</option>
+    <div th:each="usluga : ${uslugas}">
+        <option th:value="${usluga.id}" th:text="${usluga.serviceName}"></option>
+    </div>
 </select>
 <br>
 <br>
-<div id="hiddenField" class="hidden">
+<div id="hiddenField">
 <label  for="serviceCost">Стоимость услуги:  </label>
-<input  name="serviceCost" type="text" id="serviceCost" th:value="${uslugas.serviceCost}">
+<input  name="serviceCost"   id="serviceCost" disabled>
     <br>
     <br>
-    <button id="toPay">Оплатить</button>
+    <button id="toPay" onclick="window.location.href='payments'" >Оплатить</button>
 </div>
 
-<!--<script>-->
-<!--    document.getElementById('services').addEventListener('change', function() {-->
-<!--        var selectedValue = this.value;-->
-<!--        var hiddenField = document.getElementById('hiddenField');-->
+<script>
 
-<!--        if (selectedValue === '') {-->
-<!--            hiddenField.style.display = 'none';-->
-<!--        } else {-->
-<!--            hiddenField.style.display = 'block';-->
-<!--        }-->
-<!--    });-->
-<!--</script>-->
+    document.getElementById('hiddenField').style.display='none';
+    document.getElementById('services').addEventListener('change', function () {
+        document.getElementById('hiddenField').style.display='block';
+        var service = document.getElementById('services').value;
+        var uslugas1 = document.getElementById('alluslugas');
+        uslugas1.forEach(usluga => {
+            if (usluga === service){
+                var serviceId = usluga.id;
+            }
+        });
+        var serviceCostValue = async(service)=>await fetch('api/person_services/${serviceId}');
+        document.getElementById('serviceCost').value = serviceCostValue;
+    });
+    document.getElementById('toPay').addEventListener('click', function () {
+
+    });
+</script>
 
 
 </body>
