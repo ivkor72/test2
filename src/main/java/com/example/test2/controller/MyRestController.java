@@ -19,15 +19,18 @@ public class MyRestController {
 
     @Autowired
     private EntityManager em;
+    @Autowired
     private UslugaService uslugaService;
 
-@GetMapping("/person_services/{serviceId}")
-    public ResponseEntity<String> getServiceCost(@PathVariable long serviceId) {
+@GetMapping("/person_services/{id}")
+    public ResponseEntity<String> getServiceCost(@PathVariable("id") long id) {
     BigDecimal serviceCost = BigDecimal.valueOf(0);
     List<Usluga> allUslugas = uslugaService.getAllUslugas();
     for (Usluga usluga : allUslugas) {
-        if (usluga.getId() == serviceId) {
+        System.out.println("uslugaId= " + usluga.getId() + "  serviceId= " + id);
+        if ((usluga.getId())==(id)) {
             serviceCost.add(usluga.getServiceCost());
+            System.out.println("serviceCost= " + serviceCost.toString());
             break;
         }
     }

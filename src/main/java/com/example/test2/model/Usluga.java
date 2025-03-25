@@ -45,4 +45,27 @@ public class Usluga {
         this.serviceCost = serviceCost;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public BigDecimal getServiceCost() {
+        return serviceCost;
+    }
+
+    public void setServiceCost(BigDecimal serviceCost) {
+        this.serviceCost = serviceCost;
+    }
 }

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:c="">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="ru" >
 <head>
-  <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>Title</title>
@@ -16,6 +17,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
 
 
 <h2>Добро пожаловать!</h2>
@@ -46,7 +48,7 @@
 </select>
 <br>
 <br>
-<div id="hiddenField">
+<div id="hiddenField" style="display: none">
 <label  for="serviceCost">Стоимость услуги:  </label>
 <input  name="serviceCost"   id="serviceCost" disabled>
     <br>
@@ -54,26 +56,45 @@
     <button id="toPay" onclick="window.location.href='payments'" >Оплатить</button>
 </div>
 
+
+<!--<script type="text/javascript" src="/js/app.js"></script>-->
 <script>
+    const fetchService = {
+        head: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Referer': null
+        },
+
+        serviceCostValue : async(id) => await fetch('api/person_services/${id}')
+    };
+
+    //document.getElementById('hiddenField').style.display='none';]
 
     document.getElementById('hiddenField').style.display='none';
-    document.getElementById('services').addEventListener('change', function () {
+    document.getElementById('services').addEventListener('change', async () =>{
         document.getElementById('hiddenField').style.display='block';
-        var service = document.getElementById('services').value;
-        var uslugas1 = document.getElementById('alluslugas');
-        uslugas1.forEach(usluga => {
-            if (usluga === service){
-                var serviceId = usluga.id;
-            }
-        });
-        var serviceCostValue = async(service)=>await fetch('api/person_services/${serviceId}');
-        document.getElementById('serviceCost').value = serviceCostValue;
-    });
-    document.getElementById('toPay').addEventListener('click', function () {
+        let service = document.getElementById('services').value;
+        let uslugas1 = document.getElementById('alluslugas');
+        // async() => await
+        // uslugas1.forEach(usluga => {
+        //     if (usluga.serviceName === service){
+        //         var serviceId = usluga.id;
+        //     }
+        // });
+        let serviceId = 1;
+        await fetchService.serviceCostValue(serviceId)
+            .then(response => response.json())
+            .then(uslugas1 => {
+                let currentServiceCost = uslugas1.serviceCost
+                document.getElementById('serviceCost').value = currentServiceCost;
+            });
+
 
     });
+    // document.getElementById('toPay').addEventListener('click', function () {
+
+
 </script>
-
-
 </body>
 </html>
